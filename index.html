@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MannMitra - your field friend</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500;700&family=Noto+Sans+Tamil:wght@500;700&family=Noto+Sans+Devanagari:wght@500;700&display=swap">
+<style>
+:root{--bg:#ECEFFA;--card:#FFFFFF;--ink:#14183A;--mute:#575D86;--line:#CBD1EE;--g:#2E8B4F;--gb:#DDF2E3;--a:#B7790A;--ab:#FFF0CC;--r:#C0392B;--rb:#FFE0DB;--blue:#2B3FAE;--bb:#E0E5FA;--btn:#2B3FAE;--btxt:#fff;--hero:#1A2370;--gold:#E2B93B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C0F2B;--card:#161B47;--ink:#EEF0FF;--mute:#A4AAD6;--line:#2A3170;--g:#5BCB86;--gb:#173A2A;--a:#E8B04B;--ab:#3B2F12;--r:#F0816F;--rb:#3F1B24;--blue:#8EA2FF;--bb:#1E2760;--btn:#E2B93B;--btxt:#14183A;--hero:#10164F;--gold:#E2B93B}}
+:root[data-theme="dark"]{--bg:#0C0F2B;--card:#161B47;--ink:#EEF0FF;--mute:#A4AAD6;--line:#2A3170;--g:#5BCB86;--gb:#173A2A;--a:#E8B04B;--ab:#3B2F12;--r:#F0816F;--rb:#3F1B24;--blue:#8EA2FF;--bb:#1E2760;--btn:#E2B93B;--btxt:#14183A;--hero:#10164F;--gold:#E2B93B}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:600 18px/1.4 "Noto Sans","Noto Sans Tamil","Noto Sans Devanagari",system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+#app{max-width:430px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
+header{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--hero);color:#fff;border-bottom:4px solid var(--gold)}
+header .tg{color:#F2DE95}header .round{background:transparent;border-color:var(--gold);color:#fff}
+.logo{width:42px;height:42px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:23px}
+.nm{font-weight:700;font-size:21px;line-height:1.1}
+.tg{font-size:13px;color:var(--mute);font-weight:500}
+.sp{flex:1}
+main{flex:1;padding:6px 14px 90px}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.big{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:68px;border-radius:18px;background:var(--btn);color:var(--btxt);font-size:21px;font-weight:700;margin-top:14px;padding:10px 16px}
+.big.alt{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+.big .ic{font-size:30px}
+.round{width:46px;height:46px;border-radius:50%;background:var(--card);border:2px solid var(--line);font-size:22px}
+.langs{display:grid;gap:14px;margin-top:20px}
+.langs button{min-height:84px;border-radius:20px;background:var(--card);border:3px solid var(--line);font-size:30px;font-weight:700;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.hero{text-align:center;margin:16px 0}
+.hero .face{font-size:96px;line-height:1}
+.hero p{font-size:23px;margin:10px 0}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.tile{border-radius:22px;padding:14px 8px 12px;text-align:center;min-height:168px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:3px solid transparent}
+.tile .ti{font-size:52px;line-height:1}
+.tile .tl{font-size:20px;font-weight:700}
+.tile .ts{font-size:15px;font-weight:600}
+.tile .tf{font-size:34px}
+.s0{background:var(--gb);border-color:var(--g)}.s1{background:var(--ab);border-color:var(--a)}.s2{background:var(--rb);border-color:var(--r)}.sb{background:var(--bb);border-color:var(--blue)}
+.panel{background:var(--card);border-radius:22px;padding:18px;margin-top:12px;text-align:center;border:2px solid var(--line)}
+.panel .pic{font-size:84px;line-height:1.1}
+.panel .txt{font-size:23px;line-height:1.45;margin:8px 0}
+.try{margin-top:20px}
+.try h3{font-size:16px;margin:0 0 8px;color:var(--mute)}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips button{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 6px;font-size:15px;min-height:76px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.chips button span{font-size:28px}
+.chips button[aria-pressed="true"]{border-color:var(--btn);background:var(--gb)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;background:var(--card);border-top:2px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav div{display:flex;width:100%;max-width:430px}
+nav button{flex:1;background:none;padding:8px 4px;font-size:13px;display:flex;flex-direction:column;align-items:center;min-height:62px}
+nav button span{font-size:28px}
+nav button[aria-current="page"]{color:var(--blue);border-top:4px solid var(--gold)}
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 70px);transform:translateX(-50%);background:var(--btn);color:var(--btxt);padding:12px 22px;border-radius:999px;font-size:20px;font-weight:700;z-index:9;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.drops{display:flex;justify-content:center;gap:14px;height:40px;font-size:26px}
+.drops i{font-style:normal;animation:fall 1s infinite}
+.drops i:nth-child(2){animation-delay:.25s}.drops i:nth-child(3){animation-delay:.5s}
+@keyframes fall{0%{transform:translateY(-12px);opacity:0}50%{opacity:1}100%{transform:translateY(14px);opacity:0}}
+.sms{background:#E7F5E9;color:#183321;border-radius:18px 18px 18px 4px;padding:14px;text-align:left;font-size:18px;margin:10px 0;font-weight:500;line-height:1.5}
+.phone{font-size:13px;color:var(--mute);font-weight:500}
+.meter{display:flex;justify-content:center;margin:6px 0}
+.leafbox{position:relative;overflow:hidden;border-radius:20px;background:var(--bb);padding:14px;display:flex;justify-content:center;margin-top:12px;border:2px solid var(--line)}
+.scan{position:absolute;left:0;right:0;height:5px;background:var(--gold);box-shadow:0 0 14px var(--gold);animation:scan 1.4s linear infinite}
+@keyframes scan{from{top:0}to{top:100%}}
+.lc{padding:8px 4px!important}
+.ti2{width:100%;min-height:56px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:20px;padding:0 14px}
+.fc{display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:10px 12px;margin-bottom:10px}
+.fc.me{border-color:var(--gold);background:var(--bb)}
+.av{font-size:40px;line-height:1}.fi{flex:1;min-width:0;font-size:16px}.fi b{font-size:19px}
+.pb{min-width:48px;min-height:48px;border-radius:14px;background:var(--card);border:2px solid var(--line);font-size:20px;padding:0 10px;display:inline-flex;align-items:center;justify-content:center}
+.pb.g{background:var(--btn);color:var(--btxt);border-color:var(--btn);font-size:15px;font-weight:700}
+.seg2{display:flex;gap:8px;margin-bottom:10px}.seg2 button{flex:1;min-height:48px;border-radius:14px;background:var(--card);border:2px solid var(--line);font-size:16px}.seg2 button[aria-pressed="true"]{border-color:var(--btn);background:var(--gb)}
+.b{max-width:88%;padding:10px 14px;border-radius:18px;margin:8px 0;font-size:18px;line-height:1.4}
+.b.me{margin-left:auto;background:var(--btn);color:var(--btxt);border-bottom-right-radius:4px}
+.b.fr{background:var(--card);border:2px solid var(--line);border-bottom-left-radius:4px}
+nav button{font-size:11.5px!important}
+.sec{margin-top:16px}.sec h3{font-size:16px;margin:0 0 8px;color:var(--mute)}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sc{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px}
+.sc .sn{font-size:14px}.sc .sv{font-size:24px;font-weight:700}.sc .su{font-size:13px;color:var(--mute);font-weight:500}
+.live{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--mute);margin-bottom:8px}
+.dotg{width:10px;height:10px;border-radius:50%;background:var(--g);animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.rrow{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px}
+.rh{display:flex;align-items:center;gap:8px}.rh b{flex:1}.ri{font-size:26px}
+.track{position:relative;height:12px;background:var(--line);border-radius:6px;margin:8px 0 4px}
+.fill{height:100%;border-radius:6px;background:var(--blue)}
+.mk{position:absolute;top:-4px;width:3px;height:20px;background:var(--gold)}
+.rx{margin-top:6px;font-size:18px;background:var(--gb);border-radius:10px;padding:8px 10px}
+.al{display:flex;gap:10px;align-items:flex-start;background:var(--ab);border:2px solid var(--a);border-radius:14px;padding:10px;margin-bottom:8px;font-size:16px}
+.al span{font-size:26px}
+.steps{list-style:none;padding:0;margin:8px 0}.steps li{padding:6px 0;font-size:17px}
+.stp{display:flex;align-items:center;justify-content:center;gap:16px}
+.stp button{width:52px;height:52px;border-radius:50%;background:var(--card);border:2px solid var(--line);font-size:24px}
+.stp b{font-size:30px;min-width:40px;text-align:center}
+details.dc{background:var(--card);border:2px dashed var(--line);border-radius:14px;padding:12px;margin-top:18px;font-size:15px}
+details.dc summary{cursor:pointer}
+details.dc label{display:flex;justify-content:space-between;margin-top:10px;font-size:14px}
+details.dc input{width:100%;accent-color:var(--blue)}
+.log2{font-size:15px}.log2 div{padding:6px 0;border-top:1px solid var(--line)}.log2 div:first-child{border-top:0}
+@media(prefers-reduced-motion:reduce){.drops i,.scan,.dotg{animation:none;opacity:1}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="hd"></header>
+  <main id="main" aria-live="polite"></main>
+</div>
+<div id="navw"></div>
+<div id="toastw"></div>
+
+<script>
+const SCEN={normal:{m:55,N:135,P:42,K:125,ec:1.2,st:27,at:31,hu:62,r:0},hot:{m:28,N:135,P:42,K:125,ec:1.3,st:33,at:40,hu:35,r:0},rain:{m:28,N:100,P:42,K:125,ec:1.1,st:25,at:28,hu:85,r:1},hungry:{m:55,N:60,P:30,K:90,ec:1.2,st:27,at:31,hu:60,r:0}};
+const TG={veg:{N:140,P:40,K:120},flo:{N:100,P:50,K:150},fru:{N:80,P:35,K:180}};
+const FK={N:[0,12,25],P:[0,10,20],K:[0,8,15]},FNM={N:"urea",P:"dap",K:"mop"};
+const lvl=(v,t)=>{const d=(t-v)/t;return d>0.3?2:d>0.1?1:0};
+const S={lang:null,scr:"lang",tile:null,sc:"normal",...SCEN.normal,stage:"veg",acres:2,pump:false,iv:null,toast:"",leaf:null,scanning:false,h:{},disp:{},ai:4,aiv:null,diary:[],me:null,dr:{av:"👨‍🌾",name:"",vill:"",crop:"tomato"},edit:false,cs:{},msgs:{},chat:null};
+const TTS={en:"en-IN",ta:"ta-IN",hi:"hi-IN"};
+const L={
+ tag:{en:"Your field friend",ta:"உங்கள் வயல் நண்பன்",hi:"आपके खेत का दोस्त"},
+ hello:{en:"Hello! I am MannMitra, your field friend. I will tell you what your field needs, in simple words.",ta:"வணக்கம்! நான் மண்மித்ரா, உங்கள் வயல் நண்பன். உங்கள் வயலுக்கு என்ன தேவை என்று எளிய வார்த்தைகளில் சொல்வேன்.",hi:"नमस्ते! मैं मन्नमित्र हूँ, आपके खेत का दोस्त। आपके खेत को क्या चाहिए, मैं आसान शब्दों में बताऊँगा।"},
+ start:{en:"Start",ta:"தொடங்கு",hi:"शुरू करें"},
+ today:{en:"Your field today",ta:"இன்று உங்கள் வயல்",hi:"आज आपका खेत"},
+ allgood:{en:"Your field is happy",ta:"உங்கள் வயல் மகிழ்ச்சியாக உள்ளது",hi:"आपका खेत खुश है"},
+ someneed:{en:"Your field needs something",ta:"உங்கள் வயலுக்கு ஏதோ தேவை",hi:"आपके खेत को कुछ चाहिए"},
+ tapfirst:{en:"Touch a picture to hear more",ta:"படத்தைத் தொட்டால் விவரம் கேட்கலாம்",hi:"और सुनने के लिए तस्वीर छुएँ"},
+ water:{en:"Water",ta:"தண்ணீர்",hi:"पानी"},food:{en:"Plant food",ta:"பயிர் உணவு",hi:"खाद"},rain:{en:"Rain",ta:"மழை",hi:"बारिश"},pump:{en:"Pump",ta:"மோட்டார்",hi:"मोटर"},
+ good:{en:"All good",ta:"நன்று",hi:"ठीक है"},watch:{en:"Be careful",ta:"கவனம்",hi:"ध्यान दें"},now:{en:"Do it now",ta:"இப்போதே",hi:"अभी करें"},
+ on:{en:"Running",ta:"ஓடுகிறது",hi:"चालू"},off:{en:"Off",ta:"நிறுத்தம்",hi:"बंद"},
+ rno:{en:"No rain",ta:"மழை இல்லை",hi:"बारिश नहीं"},ryes:{en:"Rain coming",ta:"மழை வருகிறது",hi:"बारिश आएगी"},
+ wOk:{en:"The soil has enough water. Do not run the pump.",ta:"மண்ணில் தேவையான தண்ணீர் உள்ளது. மோட்டாரை ஓட்ட வேண்டாம்.",hi:"मिट्टी में पर्याप्त पानी है। मोटर न चलाएँ।"},
+ wNeed:{en:m=>`The soil is dry. Run the pump for ${m} minutes.`,ta:m=>`மண் காய்ந்துள்ளது. மோட்டாரை ${m} நிமிடம் ஓட்டுங்கள்.`,hi:m=>`मिट्टी सूखी है। मोटर ${m} मिनट चलाएँ।`},
+ wWait:{en:"The soil is dry, but rain is coming. Wait. Do not run the pump.",ta:"மண் காய்ந்துள்ளது, ஆனால் மழை வருகிறது. காத்திருங்கள். மோட்டாரை ஓட்ட வேண்டாம்.",hi:"मिट्टी सूखी है, पर बारिश आ रही है। रुकें। मोटर न चलाएँ।"},
+ fOk:{en:"Your plants have enough food. Do not put fertiliser today.",ta:"பயிருக்குப் போதுமான உணவு உள்ளது. இன்று உரம் இட வேண்டாம்.",hi:"पौधों को पर्याप्त खाद मिल गई है। आज खाद न डालें।"},
+ fNeed:{en:(k,f,a)=>`Your plants are hungry. Put ${k} kg ${f} on one acre.${a?" Put it after the rain.":""}`,ta:(k,f,a)=>`பயிருக்கு உணவு தேவை. ஒரு ஏக்கருக்கு ${k} கிலோ ${f} இடுங்கள்.${a?" மழைக்குப் பிறகு இடுங்கள்.":""}`,hi:(k,f,a)=>`पौधों को खाद चाहिए। एक एकड़ में ${k} किलो ${f} डालें।${a?" बारिश के बाद डालें।":""}`},
+ rNo:{en:"There will be no rain tomorrow.",ta:"நாளை மழை இல்லை.",hi:"कल बारिश नहीं होगी।"},
+ rYes:{en:"Rain is coming tomorrow. Keep the pump off.",ta:"நாளை மழை வருகிறது. மோட்டாரை நிறுத்தி வையுங்கள்.",hi:"कल बारिश आएगी। मोटर बंद रखें।"},
+ pOn:{en:"The pump is running. It will stop by itself when the soil has enough water.",ta:"மோட்டார் ஓடுகிறது. மண்ணில் போதுமான தண்ணீர் வந்ததும் தானாக நின்றுவிடும்.",hi:"मोटर चल रही है। मिट्टी में पर्याप्त पानी होते ही यह अपने आप बंद हो जाएगी।"},
+ pOff:{en:"The pump is off.",ta:"மோட்டார் நிறுத்தப்பட்டுள்ளது.",hi:"मोटर बंद है।"},
+ pNo:{en:"Wait. The soil does not need water now. Running the pump wastes water and power.",ta:"காத்திருங்கள். இப்போது மண்ணுக்குத் தண்ணீர் தேவையில்லை. மோட்டாரை ஓட்டினால் தண்ணீரும் மின்சாரமும் வீணாகும்.",hi:"रुकें। अभी मिट्टी को पानी नहीं चाहिए। मोटर चलाने से पानी और बिजली बेकार होगी।"},
+ pDone:{en:"Well done! The soil has enough water. The pump stopped.",ta:"நன்று! மண்ணில் போதுமான தண்ணீர் உள்ளது. மோட்டார் நின்றுவிட்டது.",hi:"शाबाश! मिट्टी में पर्याप्त पानी है। मोटर बंद हो गई।"},
+ startP:{en:"Start pump",ta:"மோட்டார் தொடங்கு",hi:"मोटर चालू करें"},stopP:{en:"Stop pump",ta:"மோட்டாரை நிறுத்து",hi:"मोटर बंद करें"},
+ listen:{en:"Listen",ta:"கேளுங்கள்",hi:"सुनें"},back:{en:"Back",ta:"பின்செல்",hi:"वापस"},
+ did:{en:"I did it",ta:"செய்து முடித்தேன்",hi:"मैंने कर दिया"},well:{en:"Well done!",ta:"நன்று!",hi:"शाबाश!"},
+ tryh:{en:"Try a different day",ta:"வேறு நாளை முயற்சி செய்யுங்கள்",hi:"दूसरा दिन आज़माएँ"},
+ sNormal:{en:"Normal day",ta:"சாதாரண நாள்",hi:"सामान्य दिन"},sHot:{en:"Hot dry day",ta:"சூடான வறண்ட நாள்",hi:"गर्म सूखा दिन"},sRain:{en:"Dry soil, rain coming",ta:"காய்ந்த மண், மழை வருகிறது",hi:"सूखी मिट्टी, बारिश आ रही"},sHun:{en:"Hungry plants",ta:"பசித்த பயிர்",hi:"खाद की कमी"},
+ home:{en:"Home",ta:"முகப்பு",hi:"होम"},smsT:{en:"SMS",ta:"SMS",hi:"SMS"},
+ smsH:{en:"No internet in the field? You still get advice as an SMS message.",ta:"வயலில் இணையம் இல்லையா? SMS செய்தியாகவும் ஆலோசனை வரும்.",hi:"खेत में इंटरनेट नहीं है? सलाह SMS संदेश से भी मिलेगी।"},
+ smsF:{en:"MannMitra: Field A",ta:"மண்மித்ரா: வயல் A",hi:"मन्नमित्र: खेत A"},
+ navN:{en:"Farmers",ta:"உழவர்கள்",hi:"किसान"},
+ netH:{en:"Farmers near you",ta:"உங்கள் அருகிலுள்ள உழவர்கள்",hi:"आपके पास के किसान"},
+ mkP:{en:"Create my farmer profile",ta:"என் உழவர் விவரத்தை உருவாக்கு",hi:"मेरी किसान प्रोफ़ाइल बनाएँ"},
+ nameL:{en:"Your name",ta:"உங்கள் பெயர்",hi:"आपका नाम"},villL:{en:"Your village",ta:"உங்கள் ஊர்",hi:"आपका गाँव"},cropL:{en:"Your crop",ta:"உங்கள் பயிர்",hi:"आपकी फसल"},
+ saveP:{en:"Save my profile",ta:"என் விவரத்தைச் சேமி",hi:"मेरी प्रोफ़ाइल सहेजें"},editP:{en:"Edit",ta:"திருத்து",hi:"बदलें"},
+ ct:{en:"Tomato",ta:"தக்காளி",hi:"टमाटर"},cp:{en:"Paddy",ta:"நெல்",hi:"धान"},cg:{en:"Groundnut",ta:"நிலக்கடலை",hi:"मूँगफली"},cm:{en:"Maize",ta:"மக்காச்சோளம்",hi:"मक्का"},
+ conn:{en:"Connect",ta:"இணை",hi:"जुड़ें"},conned:{en:"Connected",ta:"இணைந்தீர்கள்",hi:"जुड़ गए"},
+ friendsH:{en:"My farmer friends",ta:"என் உழவர் நண்பர்கள்",hi:"मेरे किसान दोस्त"},noF:{en:"Connect with a farmer to see them here.",ta:"ஒரு உழவருடன் இணைந்தால் இங்கே தெரியும்.",hi:"किसी किसान से जुड़ें, वे यहाँ दिखेंगे।"},
+ fAll:{en:"All",ta:"அனைவரும்",hi:"सभी"},fSame:{en:"Same crop",ta:"அதே பயிர்",hi:"वही फसल"},
+ acr:{en:n=>`${n} acre${n>1?"s":""}`,ta:n=>`${n} ஏக்கர்`,hi:n=>`${n} एकड़`},
+ away:{en:k=>`${k} km away`,ta:k=>`${k} கி.மீ தொலைவில்`,hi:k=>`${k} किमी दूर`},
+ netNote:{en:"Demo: these farmers are samples. Your profile is saved only on this phone.",ta:"டெமோ: இவர்கள் மாதிரி உழவர்கள். உங்கள் விவரம் இந்த போனில் மட்டும் சேமிக்கப்படும்.",hi:"डेमो: ये नमूना किसान हैं। आपकी प्रोफ़ाइल सिर्फ़ इसी फ़ोन में सहेजी जाती है।"},
+ chatH:{en:"Say something",ta:"ஏதாவது சொல்லுங்கள்",hi:"कुछ कहें"},transN:{en:"Messages are translated into your language.",ta:"செய்திகள் உங்கள் மொழியில் மொழிபெயர்க்கப்படுகின்றன.",hi:"संदेश आपकी भाषा में अनुवादित होते हैं।"},
+ shareS:{en:"Share my field status",ta:"என் வயல் நிலையைப் பகிர்",hi:"मेरे खेत की स्थिति भेजें"},
+ mWat:{en:"I watered my field.",ta:"என் வயலுக்குத் தண்ணீர் பாய்ச்சினேன்.",hi:"मैंने खेत में पानी दिया।"},mRain:{en:"It rained at my farm.",ta:"என் வயலில் மழை பெய்தது.",hi:"मेरे खेत में बारिश हुई।"},mFert:{en:"I put fertiliser today.",ta:"இன்று உரம் இட்டேன்.",hi:"आज मैंने खाद डाली।"},mHelp:{en:"I need help.",ta:"எனக்கு உதவி வேண்டும்.",hi:"मुझे मदद चाहिए।"},mThx:{en:"Thank you.",ta:"நன்றி.",hi:"धन्यवाद।"},
+ mStat:{en:(w,f)=>`My field today: 💧 ${w} 🌿 ${f}`,ta:(w,f)=>`இன்று என் வயல்: 💧 ${w} 🌿 ${f}`,hi:(w,f)=>`आज मेरा खेत: 💧 ${w} 🌿 ${f}`},
+ rWat:{en:"Good. It is dry here too.",ta:"நல்லது. இங்கும் வறண்டுள்ளது.",hi:"अच्छा। यहाँ भी सूखा है।"},rRain:{en:"Thanks for telling me. I will wait before I water.",ta:"சொன்னதற்கு நன்றி. நான் தண்ணீர் பாய்ச்சுவதைத் தள்ளி வைக்கிறேன்.",hi:"बताने के लिए धन्यवाद। मैं पानी देना रोक देता हूँ।"},rFert:{en:"Good. Which fertiliser did you use?",ta:"நல்லது. எந்த உரம் இட்டீர்கள்?",hi:"अच्छा। आपने कौन सी खाद डाली?"},rHelp:{en:"I will come and see your field today.",ta:"நான் இன்று உங்கள் வயலைப் பார்க்க வருகிறேன்.",hi:"मैं आज आपका खेत देखने आऊँगा।"},rThx:{en:"You are welcome.",ta:"பரவாயில்லை.",hi:"कोई बात नहीं।"},rStat:{en:"Thanks. My field is fine too.",ta:"நன்றி. என் வயலும் நன்றாக உள்ளது.",hi:"धन्यवाद। मेरा खेत भी ठीक है।"},
+ navA:{en:"AI",ta:"AI",hi:"AI"},
+ aiT:{en:"AI Advisor: sensors and fertiliser",ta:"AI ஆலோசகர்: சென்சார்களும் உரமும்",hi:"AI सलाहकार: सेंसर और खाद"},
+ liveH:{en:"Field sensors (live)",ta:"வயல் சென்சார்கள் (நேரலை)",hi:"खेत के सेंसर (लाइव)"},
+ upd:{en:n=>`updated ${n}s ago`,ta:n=>`${n} வினாடி முன் புதுப்பிக்கப்பட்டது`,hi:n=>`${n} सेकंड पहले अपडेट`},
+ aiAlerts:{en:"Alerts",ta:"எச்சரிக்கைகள்",hi:"चेतावनी"},
+ noAl:{en:"No alerts. All sensors are fine.",ta:"எச்சரிக்கை இல்லை. எல்லா சென்சார்களும் நன்றாக உள்ளன.",hi:"कोई चेतावनी नहीं। सभी सेंसर ठीक हैं।"},
+ aHeat:{en:"Very hot. Water in the early morning or evening.",ta:"மிகவும் சூடு. அதிகாலை அல்லது மாலையில் தண்ணீர் பாய்ச்சுங்கள்.",hi:"बहुत गर्मी है। सुबह जल्दी या शाम को पानी दें।"},
+ aSalt:{en:"Too much salt in the soil. Do not put more fertiliser. Ask the farm officer.",ta:"மண்ணில் உப்பு அதிகம். மேலும் உரம் இட வேண்டாம். வேளாண் அலுவலரிடம் கேளுங்கள்.",hi:"मिट्टी में नमक ज़्यादा है। और खाद न डालें। कृषि अधिकारी से पूछें।"},
+ stageH:{en:"Crop stage",ta:"பயிர் நிலை",hi:"फसल की अवस्था"},
+ st1:{en:"Leaf growth",ta:"இலை வளர்ச்சி",hi:"पत्ते बढ़ना"},st2:{en:"Flowering",ta:"பூக்கும் நிலை",hi:"फूल आना"},st3:{en:"Fruits",ta:"காய்க்கும் நிலை",hi:"फल लगना"},
+ acresH:{en:"My field size (acres)",ta:"என் வயல் அளவு (ஏக்கர்)",hi:"मेरे खेत का आकार (एकड़)"},
+ aiSay:{en:"AI fertiliser advice",ta:"AI உர ஆலோசனை",hi:"AI की खाद सलाह"},
+ aiRun:{en:"Run AI check",ta:"AI சோதனை செய்",hi:"AI जाँच चलाएँ"},
+ steps:{en:["Reading the sensors","Checking the crop stage","Checking the weather","Deciding the fertiliser"],ta:["சென்சார்களைப் படிக்கிறது","பயிர் நிலையைப் பார்க்கிறது","வானிலையைப் பார்க்கிறது","உரத்தை முடிவு செய்கிறது"],hi:["सेंसर पढ़ रहा है","फसल की अवस्था देख रहा है","मौसम देख रहा है","खाद तय कर रहा है"]},
+ aN0:{en:"Enough",ta:"போதும்",hi:"पर्याप्त"},aN1:{en:"Some needed",ta:"கொஞ்சம் தேவை",hi:"थोड़ी ज़रूरत"},aN2:{en:"A lot needed",ta:"அதிகம் தேவை",hi:"ज़्यादा ज़रूरत"},
+ nowL:{en:"Now",ta:"இப்போது",hi:"अभी"},needL:{en:"Target",ta:"இலக்கு",hi:"लक्ष्य"},
+ fOne:{en:(k,f)=>`Put ${k} kg ${f} on one acre.`,ta:(k,f)=>`ஒரு ஏக்கருக்கு ${k} கிலோ ${f} இடுங்கள்.`,hi:(k,f)=>`एक एकड़ में ${k} किलो ${f} डालें।`},
+ afterR:{en:"Put it after the rain.",ta:"மழைக்குப் பிறகு இடுங்கள்.",hi:"बारिश के बाद डालें।"},
+ tot:{en:a=>`For ${a} acre${a>1?"s":""}`,ta:a=>`${a} ஏக்கருக்கு`,hi:a=>`${a} एकड़ के लिए`},
+ urea:{en:"urea",ta:"யூரியா",hi:"यूरिया"},dap:{en:"DAP",ta:"டிஏபி",hi:"डीएपी"},mop:{en:"MOP",ta:"எம்ஓபி",hi:"एमओपी"},
+ diaryH:{en:"Farm diary",ta:"வயல் நாட்குறிப்பு",hi:"खेत की डायरी"},noD:{en:"Nothing yet.",ta:"இன்னும் எதுவும் இல்லை.",hi:"अभी कुछ नहीं।"},
+ fApplied:{en:"Fertiliser put in the field",ta:"வயலில் உரம் இடப்பட்டது",hi:"खेत में खाद डाली गई"},pumpRan:{en:"Pump watered the field",ta:"மோட்டார் வயலுக்குத் தண்ணீர் பாய்ச்சியது",hi:"मोटर ने खेत को पानी दिया"},
+ demoC:{en:"Demo controls: change sensor values",ta:"டெமோ கட்டுப்பாடுகள்: சென்சார் மதிப்புகளை மாற்றுங்கள்",hi:"डेमो कंट्रोल: सेंसर मान बदलें"},
+ sn:{en:{m:"Soil water",st:"Soil heat",at:"Air heat",hu:"Air wetness",ec:"Salt in soil",N:"Nitrogen",P:"Phosphorus",K:"Potassium"},ta:{m:"மண் ஈரம்",st:"மண் வெப்பம்",at:"காற்று வெப்பம்",hu:"காற்று ஈரப்பதம்",ec:"மண்ணில் உப்பு",N:"நைட்ரஜன்",P:"பாஸ்பரஸ்",K:"பொட்டாசியம்"},hi:{m:"मिट्टी की नमी",st:"मिट्टी का तापमान",at:"हवा का तापमान",hu:"हवा की नमी",ec:"मिट्टी में नमक",N:"नाइट्रोजन",P:"फॉस्फोरस",K:"पोटैशियम"}},
+ navD:{en:"Check",ta:"சோதனை",hi:"जाँच"},
+ detT:{en:"Check my plant",ta:"என் பயிரைச் சோதி",hi:"मेरा पौधा जाँचें"},
+ detH:{en:"Touch a leaf. MannMitra will check it.",ta:"ஒரு இலையைத் தொடுங்கள். மண்மித்ரா சோதிக்கும்.",hi:"एक पत्ता छुएँ। मन्नमित्र जाँच करेगा।"},
+ scanT:{en:"Checking the leaf...",ta:"இலையைச் சோதிக்கிறேன்...",hi:"पत्ता जाँच रहा हूँ..."},
+ lOk:{en:"Green leaf",ta:"பச்சை இலை",hi:"हरा पत्ता"},lYel:{en:"Yellow leaf",ta:"மஞ்சள் இலை",hi:"पीला पत्ता"},lSpot:{en:"Spotted leaf",ta:"புள்ளி இலை",hi:"धब्बेदार पत्ता"},
+ dOk:{en:"The leaf is healthy. No problem found.",ta:"இலை ஆரோக்கியமாக உள்ளது. பிரச்சனை எதுவும் இல்லை.",hi:"पत्ता स्वस्थ है। कोई समस्या नहीं मिली।"},
+ dYel:{en:"Yellow leaf: the plant is hungry for nitrogen. Put urea. See Plant food.",ta:"மஞ்சள் இலை: பயிருக்கு நைட்ரஜன் உணவு குறைவு. யூரியா இடுங்கள். பயிர் உணவைப் பாருங்கள்.",hi:"पीला पत्ता: पौधे को नाइट्रोजन की कमी है। यूरिया डालें। खाद देखें।"},
+ dSpot:{en:"Brown spots: this may be a leaf disease. Keep this plant away from others and show it to the farm officer.",ta:"பழுப்பு புள்ளிகள்: இது இலை நோயாக இருக்கலாம். இந்தச் செடியை மற்றவற்றிலிருந்து தனியாக வையுங்கள், வேளாண் அலுவலரிடம் காட்டுங்கள்.",hi:"भूरे धब्बे: यह पत्ती की बीमारी हो सकती है। इस पौधे को दूसरों से अलग रखें और कृषि अधिकारी को दिखाएँ।"},
+ demoN:{en:"This is a demo with sample leaves. The real app will check a photo of your own leaf.",ta:"இது மாதிரி இலைகளுடன் ஒரு டெமோ. உண்மையான செயலி உங்கள் இலையின் படத்தைச் சோதிக்கும்.",hi:"यह नमूना पत्तों के साथ डेमो है। असली ऐप आपके पत्ते की फोटो जाँचेगा।"},
+ bag:{en:"of a 50 kg bag",ta:"50 கிலோ மூட்டையில்",hi:"50 किलो की बोरी में से"}
+};
+const $=id=>document.getElementById(id);
+const T=(k,...a)=>{const v=L[k][S.lang||"en"];return typeof v==="function"?v(...a):v};
+const mins=()=>Math.round((50-S.m)*1.1);
+function plan(){const t=TG[S.stage],salt=S.ec>2.5;return{salt,rows:["N","P","K"].map(k=>{const l=salt?0:lvl(S[k],t[k]);return{k,l,v:S[k],t:t[k],kg:FK[k][l],f:FNM[k]}})};}
+function lv(){
+ const w=S.m>=35?{l:0,t:T("wOk")}:S.r?{l:1,t:T("wWait")}:{l:2,t:T("wNeed",mins())};
+ const pl=plan(),top=pl.rows.reduce((a,b)=>b.l>a.l?b:a);
+ const f=pl.salt?{l:1,t:T("aSalt")}:top.l===0?{l:0,t:T("fOk")}:{l:top.l,t:T("fNeed",top.kg,T(top.f),S.r&&top.k==="N")};
+ const r=S.r?{l:"b",t:T("rYes")}:{l:"b",t:T("rNo")};
+ return{water:w,food:f,rain:r,pump:{l:0,t:S.pump?T("pOn"):T("pOff")},kg:pl.salt?0:top.kg};
+}
+const FACE=["😀","😐","😟"],LAB=["good","watch","now"];
+function speak(txt){if(!("speechSynthesis" in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang=TTS[S.lang||"en"];u.rate=.9;speechSynthesis.speak(u);}
+function toast(m){$("toastw").innerHTML=`<div class="toast" role="status">${m}</div>`;setTimeout(()=>{$("toastw").innerHTML=""},2200);}
+function go(scr,tile){S.scr=scr;S.tile=tile||null;render();window.scrollTo(0,0);}
+function setScenario(k){S.sc=k;Object.assign(S,SCEN[k]);stopPump();tick();render();}
+function stopPump(){clearInterval(S.iv);S.iv=null;S.pump=false;}
+function startPump(){
+ if(S.m>=35){const t=T("pNo");toast("⚠️");speak(t);S.warn=t;render();return;}
+ if(S.r){S.warn=T("wWait");speak(S.warn);render();return;}
+ S.warn="";S.pump=true;speak(T("pOn"));
+ S.iv=setInterval(()=>{S.m=Math.min(62,S.m+2);if(S.m>=60){stopPump();toast(T("well")+" 👍");speak(T("pDone"));addDiary("🚰 "+T("pumpRan"));}(S.scr==="ai"?updateAI():render());},450);
+ render();
+}
+function head(){
+ $("hd").innerHTML=`<div class="logo">🌱</div><div><div class="nm">MannMitra</div><div class="tg">${T("tag")}</div></div><div class="sp"></div>`+
+ (S.scr==="lang"?"":`<button class="round" aria-label="Language" onclick="go('lang')">🌐</button>`);
+ const cur=x=>S.scr===x||(x==="home"&&S.scr==="detail")||(x==="net"&&S.scr==="chat")?'aria-current="page"':"";
+ $("navw").innerHTML=["home","sms","det","detail","ai","net","chat"].includes(S.scr)?`<nav><div><button ${cur("home")} onclick="go('home')"><span>🏠</span>${T("home")}</button><button ${cur("ai")} onclick="go('ai')"><span>🧠</span>${T("navA")}</button><button ${cur("net")} onclick="go('net')"><span>👨‍🌾</span>${T("navN")}</button><button ${cur("det")} onclick="go('det')"><span>🔍</span>${T("navD")}</button><button ${cur("sms")} onclick="go('sms')"><span>✉️</span>${T("smsT")}</button></div></nav>`:"";
+}
+function render(){
+ head();const m=$("main"),x=lv();
+ if(S.scr==="lang"){
+  m.innerHTML=`<div class="hero"><div class="face">🗣️</div></div><div class="langs"><button onclick="pick('ta')">தமிழ் <span>🔊</span></button><button onclick="pick('hi')">हिन्दी <span>🔊</span></button><button onclick="pick('en')">English <span>🔊</span></button></div>`;
+ }else if(S.scr==="hello"){
+  m.innerHTML=`<div class="hero"><div class="face">👨‍🌾</div><p>${T("hello")}</p></div><button class="big alt" onclick="speak(T('hello'))"><span class="ic">🔊</span>${T("listen")}</button><button class="big" onclick="go('home')"><span class="ic">▶️</span>${T("start")}</button>`;
+ }else if(S.scr==="home"){
+  const bad=[x.water.l,x.food.l].some(v=>v>0);
+  const tile=(k,ic,lab,s,cls,face,st)=>`<button class="tile ${cls}" onclick="open_('${k}')"><span class="ti">${ic}</span><span class="tl">${lab}</span><span class="tf">${face}</span><span class="ts">${st}</span></button>`;
+  const ti=(k,ic,o)=>o.l==="b"?tile(k,ic,T(k),"", "sb",S.r?"☔":"☀️",S.r?T("ryes"):T("rno")):tile(k,ic,T(k),"","s"+o.l,FACE[o.l],T(LAB[o.l]));
+  m.innerHTML=`<div class="hero"><div class="face">${bad?"🤔":"😀"}</div><p>${bad?T("someneed"):T("allgood")}</p></div>
+  <div class="tiles">${ti("water","💧",x.water)}${ti("food","🌿",x.food)}${ti("rain","🌧️",x.rain)}${tile("pump","🚰",T("pump"),"","s0","⚙️",S.pump?T("on"):T("off"))}</div>
+  <div class="try"><h3>${T("tryh")}</h3><div class="chips">${[["normal","😀","sNormal"],["hot","☀️","sHot"],["rain","🌧️","sRain"],["hungry","🌱","sHun"]].map(([k,i,n])=>`<button aria-pressed="${S.sc===k}" onclick="setScenario('${k}')"><span>${i}</span>${T(n)}</button>`).join("")}</div></div>`;
+ }else if(S.scr==="detail"){
+  const k=S.tile,o=x[k];let pic="",extra="";
+  if(k==="water"){
+   const mm=S.m>=35?0:mins(),d=Math.round(mm/60*251);
+   pic=mm?`<div class="meter"><svg width="150" height="150" viewBox="0 0 100 100" role="img" aria-label="${mm} min"><circle cx="50" cy="50" r="40" fill="none" stroke="var(--line)" stroke-width="12"/><circle cx="50" cy="50" r="40" fill="none" stroke="var(--blue)" stroke-width="12" stroke-dasharray="${d} 251" transform="rotate(-90 50 50)" stroke-linecap="round"/><text x="50" y="54" text-anchor="middle" font-size="26" font-weight="700" fill="var(--ink)">${mm}</text><text x="50" y="70" text-anchor="middle" font-size="11" fill="var(--mute)">min</text></svg></div>`:`<div class="pic">${S.r?"⏳":"✅"}</div>`;
+   extra=o.l===2?`<button class="big" onclick="startPump()"><span class="ic">🚰</span>${T("startP")}</button>`:"";
+  }else if(k==="food"){
+   const kg=x.kg,w=Math.round(kg/50*100);
+   pic=kg?`<div class="meter"><svg width="170" height="130" viewBox="0 0 170 130" role="img" aria-label="${kg} kg"><rect x="35" y="10" width="100" height="110" rx="14" fill="none" stroke="var(--ink)" stroke-width="4"/><rect x="39" y="${14+102*(1-w/100)}" width="92" height="${102*w/100}" rx="10" fill="var(--g)" opacity=".75"/><text x="85" y="72" text-anchor="middle" font-size="26" font-weight="700" fill="var(--ink)">${kg} kg</text></svg></div><div class="tg">${kg} kg ${T("bag")}</div>`:`<div class="pic">✅</div>`;
+   extra=kg?`<button class="big" onclick="didFood()"><span class="ic">✅</span>${T("did")}</button>`:"";
+  }else if(k==="rain"){pic=`<div class="pic">${S.r?"🌧️":"☀️"}</div>`;}
+  else{pic=`<div class="pic">${S.pump?"💦":"🚰"}</div>${S.pump?'<div class="drops"><i>💧</i><i>💧</i><i>💧</i></div>':""}`;
+   extra=`<button class="big ${S.pump?"alt":""}" onclick="${S.pump?"stopPump();render()":"startPump()"}"><span class="ic">${S.pump?"⏹️":"▶️"}</span>${S.pump?T("stopP"):T("startP")}</button>`;}
+  const txt=S.warn&&k==="pump"?S.warn:o.t,face=o.l==="b"?(S.r?"☔":"☀️"):FACE[o.l];
+  m.innerHTML=`<div class="panel"><div style="font-size:44px">${face}</div>${pic}<div class="txt">${txt}</div></div>
+   <button class="big alt" onclick="speak(document.querySelector('.txt').textContent)"><span class="ic">🔊</span>${T("listen")}</button>${extra}
+   <button class="big alt" onclick="go('home')"><span class="ic">⬅️</span>${T("back")}</button>`;
+ }else if(S.scr==="net"){
+  const dr=S.dr,CR=Object.entries(CROPS);
+  if(!S.me||S.edit){
+   m.innerHTML=`<div class="panel" style="margin-top:0"><div style="font-size:60px">${dr.av}</div><div class="txt" style="font-size:20px">${T("mkP")}</div></div>
+   <div class="chips" style="grid-template-columns:repeat(6,1fr);margin-top:12px">${["👨‍🌾","👩‍🌾","🧑‍🌾","🧔","👴","👵"].map(a=>`<button style="min-height:56px;padding:4px" aria-pressed="${dr.av===a}" aria-label="avatar" onclick="S.dr.av='${a}';render()"><span>${a}</span></button>`).join("")}</div>
+   <div class="sec"><h3>${T("nameL")}</h3><input class="ti2" value="${esc(dr.name)}" maxlength="30" oninput="S.dr.name=this.value" aria-label="${T("nameL")}"></div>
+   <div class="sec"><h3>${T("villL")}</h3><input class="ti2" value="${esc(dr.vill)}" maxlength="30" oninput="S.dr.vill=this.value" aria-label="${T("villL")}"></div>
+   <div class="sec"><h3>${T("cropL")}</h3><div class="chips">${CR.map(([k,[i,n]])=>`<button aria-pressed="${dr.crop===k}" onclick="S.dr.crop='${k}';render()"><span>${i}</span>${T(n)}</button>`).join("")}</div></div>
+   <div class="sec"><h3>${T("acresH")}</h3><div class="stp"><button aria-label="-" onclick="acres(-1)">➖</button><b id="acN">${S.acres}</b><button aria-label="+" onclick="acres(1)">➕</button></div></div>
+   <button class="big" onclick="saveMe()"><span class="ic">✅</span>${T("saveP")}</button>`;
+  }else{
+   const me=S.me,same=S.flt==="same",list=FARM.filter(f=>!same||f.c===me.crop),fr=FARM.filter(f=>S.cs[f.id]==="ok");
+   const card=f=>{const st=S.cs[f.id],b=st==="ok"?`<button class="pb" aria-label="chat" onclick="openChat(${f.id})">💬</button>`:st==="pend"?`<span class="pb">⏳</span>`:`<button class="pb g" onclick="connect(${f.id})">🤝 ${T("conn")}</button>`;
+    return `<div class="fc"><div class="av">${f.av}</div><div class="fi"><b>${f.n}</b><div class="phone">${CROPS[f.c][0]} ${T(CROPS[f.c][1])} · ${T("acr",f.a)} · ${T("away",f.km)}</div><div>💧${FACE[f.w]} 🌿${FACE[f.f]}</div></div>${b}</div>`;};
+   m.innerHTML=`<div class="fc me"><div class="av">${me.av}</div><div class="fi"><b>${esc(me.name)}</b><div class="phone">📍 ${esc(me.vill)} · ${CROPS[me.crop][0]} ${T(CROPS[me.crop][1])} · ${T("acr",me.acres)}</div></div><button class="pb" aria-label="${T("editP")}" onclick="S.dr={av:S.me.av,name:S.me.name,vill:S.me.vill,crop:S.me.crop};S.acres=S.me.acres;S.edit=true;render()">✏️</button></div>
+   <div class="sec"><h3>👥 ${T("friendsH")}</h3>${fr.length?fr.map(card).join(""):`<div class="phone">${T("noF")}</div>`}</div>
+   <div class="sec"><h3>📍 ${T("netH")}</h3><div class="seg2"><button aria-pressed="${!same}" onclick="S.flt='all';render()">${T("fAll")}</button><button aria-pressed="${same}" onclick="S.flt='same';render()">${CROPS[me.crop][0]} ${T("fSame")}</button></div>${list.map(card).join("")}</div>
+   <div class="phone" style="margin-top:12px">${T("netNote")}</div>`;
+  }
+ }else if(S.scr==="chat"){
+  const f=FARM.find(x=>x.id===S.chat),ms=S.msgs[f.id]||[];
+  m.innerHTML=`<div class="fc"><div class="av">${f.av}</div><div class="fi"><b>${f.n}</b><div class="phone">${CROPS[f.c][0]} ${T(CROPS[f.c][1])} · ${T("away",f.km)}</div></div><button class="pb" aria-label="${T("back")}" onclick="go('net')">⬅️</button></div>
+   <div class="phone">🌐 ${T("transN")}</div>
+   <div id="msgs">${ms.map(x=>`<div class="b ${x.me?"me":"fr"}" onclick="speak(this.textContent)">${T(x.k,...(x.a||[]))}</div>`).join("")}</div>
+   <div class="sec"><h3>${T("chatH")}</h3><div class="chips">${[["mWat","💧"],["mRain","🌧️"],["mFert","🌿"],["mHelp","🆘"],["mThx","👍"]].map(([k,i])=>`<button onclick="send('${k}')"><span>${i}</span>${T(k)}</button>`).join("")}<button onclick="send('mStat',[FACE[lv().water.l],FACE[lv().food.l]])"><span>📊</span>${T("shareS")}</button></div></div>`;
+ }else if(S.scr==="ai"){
+  const sn=L.sn[S.lang||"en"];
+  const sl=[["m",10,80,1],["N",10,200,1],["P",10,200,1],["K",10,200,1],["ec",0.2,4,0.1],["at",20,45,1]].map(([k,a,b,st])=>`<label><span>${sn[k]}</span><b id="dv_${k}">${S[k]}</b></label><input type="range" min="${a}" max="${b}" step="${st}" value="${S[k]}" aria-label="${sn[k]}" oninput="S['${k}']=+this.value;document.getElementById('dv_${k}').textContent=this.value;S.ai=4;updateAI()">`).join("");
+  m.innerHTML=`<div class="panel" style="margin-top:0"><div style="font-size:52px">🧠</div><div class="txt" style="font-size:20px">${T("aiT")}</div></div>
+  <div class="sec"><h3>${T("liveH")}</h3><div id="aiLive"></div></div>
+  <div class="sec"><h3>${T("aiAlerts")}</h3><div id="aiAlerts"></div></div>
+  <div class="sec"><h3>${T("stageH")}</h3><div class="chips" style="grid-template-columns:repeat(3,1fr)">${[["veg","🌱","st1"],["flo","🌼","st2"],["fru","🍅","st3"]].map(([k,i,n])=>`<button aria-pressed="${S.stage===k}" onclick="S.stage='${k}';render()"><span>${i}</span>${T(n)}</button>`).join("")}</div>
+  <h3 style="margin-top:14px">${T("acresH")}</h3><div class="stp"><button aria-label="-" onclick="acres(-1)">➖</button><b id="acN">${S.acres}</b><button aria-label="+" onclick="acres(1)">➕</button></div></div>
+  <div class="sec"><h3>🧠 ${T("aiSay")}</h3><div id="aiRec"></div><button class="big" onclick="runAI()"><span class="ic">🧠</span>${T("aiRun")}</button><button class="big alt" onclick="speakAI()"><span class="ic">🔊</span>${T("listen")}</button></div>
+  <div class="sec"><h3>📒 ${T("diaryH")}</h3><div class="log2" id="aiDiary"></div></div>
+  <details class="dc"><summary>${T("demoC")}</summary>${sl}</details>`;
+  updateAI();
+ }else if(S.scr==="det"){
+  const R={ok:["😀","dOk"],yel:["😟","dYel"],spot:["😟","dSpot"]},LN={ok:"lOk",yel:"lYel",spot:"lSpot"};
+  const res=S.leaf&&!S.scanning?R[S.leaf]:null;
+  m.innerHTML=`<div class="panel"><div class="pic">🔍</div><div class="txt">${T("detH")}</div></div>
+  <div class="chips" style="grid-template-columns:repeat(3,1fr);margin-top:12px">${["ok","yel","spot"].map(t=>`<button class="lc" aria-pressed="${S.leaf===t}" onclick="scan('${t}')">${leaf(t,56)}${T(LN[t])}</button>`).join("")}</div>
+  ${S.leaf?`<div class="leafbox">${leaf(S.leaf,150)}${S.scanning?'<div class="scan"></div>':""}</div>`:""}
+  ${S.scanning?`<div class="panel"><div class="txt">${T("scanT")}</div></div>`:""}
+  ${res?`<div class="panel s${res[0]==="😀"?0:2}"><div style="font-size:48px">${res[0]}</div><div class="txt">${T(res[1])}</div></div>
+  <button class="big alt" onclick="speak(T('${res[1]}'))"><span class="ic">🔊</span>${T("listen")}</button>
+  ${S.leaf==="yel"?`<button class="big" onclick="setScenario('hungry');open_('food')"><span class="ic">🌿</span>${T("food")}</button>`:""}`:""}
+  <div class="phone" style="margin-top:14px">${T("demoN")}</div>`;
+ }else if(S.scr==="sms"){
+  m.innerHTML=`<div class="panel"><div class="pic">📱</div><div class="txt">${T("smsH")}</div></div>
+  <div class="sms"><b>${T("smsF")}</b><br>💧 ${x.water.t}<br>🌿 ${x.food.t}<br>🌧️ ${x.rain.t}</div><div class="phone">SMS · 06:30</div>
+  <button class="big alt" onclick="speak(T('smsH'))"><span class="ic">🔊</span>${T("listen")}</button>`;
+ }
+}
+function leaf(t,w){const f=t==="yel"?"#D6CC3C":"#3E9B4F",sp=t==="spot"?'<circle cx="40" cy="45" r="5" fill="#6B3E1E"/><circle cx="60" cy="62" r="6" fill="#6B3E1E"/><circle cx="44" cy="80" r="4" fill="#6B3E1E"/><circle cx="58" cy="35" r="3.5" fill="#6B3E1E"/>':"";
+ return `<svg width="${w}" height="${Math.round(w*1.2)}" viewBox="0 0 100 120" role="img" aria-hidden="true"><path d="M50 5 C88 30 88 82 50 116 C12 82 12 30 50 5Z" fill="${f}"/><path d="M50 12 L50 112" stroke="#1F5B2C" stroke-width="2.5" opacity=".55"/>${sp}</svg>`;}
+function scan(t){S.leaf=t;S.scanning=true;render();setTimeout(()=>{S.scanning=false;render();const k={ok:"dOk",yel:"dYel",spot:"dSpot"}[t];speak(T(k));},1600);}
+const KEYS=["m","st","at","hu","ec","N","P","K"],NZ={m:.8,st:.3,at:.4,hu:1.5,ec:.03,N:1.2,P:.6,K:1.2};
+function tick(){KEYS.forEach(k=>{const v=S[k]+(Math.random()-.5)*2*NZ[k];S.disp[k]=v;(S.h[k]=S.h[k]||[]).push(v);if(S.h[k].length>24)S.h[k].shift();});S.last=Date.now();}
+function spark(a){if(!a||a.length<2)return"";const mn=Math.min(...a),mx=Math.max(...a),r=(mx-mn)||1;return `<svg width="100%" height="26" viewBox="0 0 100 26" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="var(--blue)" stroke-width="2" points="${a.map((v,i)=>(i*100/(a.length-1)).toFixed(1)+","+(23-(v-mn)/r*20).toFixed(1)).join(" ")}"/></svg>`;}
+function alerts(){const a=[];if(S.at>=38)a.push(["🔥",T("aHeat")]);if(S.m<35)a.push(S.r?["⏳",T("wWait")]:["💧",T("wNeed",mins())]);if(S.ec>2.5)a.push(["🧂",T("aSalt")]);if(S.r)a.push(["🌧️",T("rYes")]);return a;}
+function addDiary(s){S.diary.unshift({t:new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}),s});S.diary=S.diary.slice(0,8);}
+function acres(d){S.acres=Math.max(1,Math.min(10,S.acres+d));const e=$("acN");if(e)e.textContent=S.acres;updateAI();}
+function runAI(){clearInterval(S.aiv);S.ai=0;updateAI();S.aiv=setInterval(()=>{S.ai++;updateAI();if(S.ai>=4){clearInterval(S.aiv);speakAI();}},500);}
+function speakAI(){const p=plan(),t=p.rows.filter(r=>r.l).map(r=>T("fOne",r.kg,T(r.f))).join(" ");speak(T("aiSay")+". "+(p.salt?T("aSalt"):t||T("fOk")));}
+function updateAI(){
+ if(S.scr!=="ai"||!$("aiLive"))return;
+ const sn=L.sn[S.lang||"en"],age=Math.round((Date.now()-S.last)/1000);
+ const C=[["m","💧","%",0],["st","🌡️","°C",1],["at","☀️","°C",1],["hu","🌫️","%",0],["ec","🧂","dS/m",2],["N","🌿","mg/kg",0],["P","🌼","mg/kg",0],["K","🍅","mg/kg",0]];
+ $("aiLive").innerHTML=`<div class="live"><span class="dotg"></span>📡 LoRa · ${T("upd",age)}</div><div class="sgrid">`+C.map(([k,ic,u,d])=>`<div class="sc"><div class="sn">${ic} ${sn[k]}</div><div><span class="sv">${(S.disp[k]??S[k]).toFixed(d)}</span> <span class="su">${u}</span></div>${spark(S.h[k])}</div>`).join("")+`</div>`;
+ const al=alerts();
+ $("aiAlerts").innerHTML=al.length?al.map(a=>`<div class="al"><span>${a[0]}</span><div>${a[1]}</div></div>`).join(""):`<div class="panel s0" style="margin:0"><div class="txt" style="font-size:19px">😀 ${T("noAl")}</div></div>`;
+ const d=S.diary.slice(0,5);$("aiDiary").innerHTML=d.length?d.map(x=>`<div><b>${x.t}</b> ${x.s}</div>`).join(""):`<div class="phone">${T("noD")}</div>`;
+ if(S.ai<4){$("aiRec").innerHTML=`<ul class="steps">`+T("steps").map((s,i)=>`<li>${i<S.ai?"✅":i===S.ai?"⏳":"▫️"} ${s}</li>`).join("")+`</ul>`;return;}
+ const p=plan(),ic={N:"🌿",P:"🌼",K:"🍅"};
+ let h=p.salt?`<div class="al"><span>🧂</span><div>${T("aSalt")}</div></div>`:"";
+ h+=p.rows.map(r=>`<div class="rrow"><div class="rh"><span class="ri">${ic[r.k]}</span><b>${sn[r.k]}</b><span>${FACE[r.l]} ${T("aN"+r.l)}</span></div><div class="track"><div class="fill" style="width:${Math.min(100,r.v/2)}%"></div><div class="mk" style="left:${r.t/2}%"></div></div><div class="phone">${T("nowL")} ${r.v} · ${T("needL")} ${r.t}</div>${r.l?`<div class="rx">${T("fOne",r.kg,T(r.f))}${S.r&&r.k==="N"?" "+T("afterR"):""}</div>`:""}</div>`).join("");
+ const tot=p.rows.filter(r=>r.l).map(r=>`${T(r.f)} ${r.kg*S.acres} kg`).join(" · ");
+ $("aiRec").innerHTML=h+(tot?`<div class="rx" style="font-size:19px"><b>${T("tot",S.acres)}:</b> ${tot}</div>`:"");
+}
+const FARM=[{id:1,n:"Murugan",av:"👨‍🌾",km:2,c:"tomato",a:3,w:0,f:1},{id:2,n:"Lakshmi",av:"👩‍🌾",km:3,c:"paddy",a:2,w:2,f:0},{id:3,n:"Selvam",av:"🧔",km:5,c:"tomato",a:5,w:0,f:0},{id:4,n:"Kavitha",av:"👩‍🌾",km:6,c:"groundnut",a:1,w:1,f:2},{id:5,n:"Ramesh",av:"👴",km:8,c:"maize",a:4,w:0,f:0},{id:6,n:"Sunita",av:"👵",km:9,c:"paddy",a:2,w:0,f:1}];
+const CROPS={tomato:["🍅","ct"],paddy:["🌾","cp"],groundnut:["🥜","cg"],maize:["🌽","cm"]};
+const REPLY={mWat:"rWat",mRain:"rRain",mFert:"rFert",mHelp:"rHelp",mThx:"rThx",mStat:"rStat"};
+const esc=x=>String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+try{const j=JSON.parse(localStorage.getItem("mm_me")||"null");if(j&&j.name){S.me=j;S.acres=j.acres||S.acres;}}catch(e){}
+function saveMe(){if(!S.dr.name.trim()){toast("✏️ "+T("nameL"));return;}S.me={...S.dr,name:S.dr.name.trim(),vill:S.dr.vill.trim(),acres:S.acres};try{localStorage.setItem("mm_me",JSON.stringify(S.me));}catch(e){}S.edit=false;toast(T("well")+" 👍");render();}
+function connect(id){S.cs[id]="pend";render();setTimeout(()=>{S.cs[id]="ok";if(S.scr==="net")render();toast("🤝 "+T("conned"));},1200);}
+function openChat(id){S.chat=id;S.msgs[id]=S.msgs[id]||[];go("chat");}
+function send(k,a){const id=S.chat;S.msgs[id].push({me:1,k,a});render();setTimeout(()=>{if(S.scr==="chat"&&S.chat===id){S.msgs[id].push({me:0,k:REPLY[k]});render();window.scrollTo(0,document.body.scrollHeight);}else S.msgs[id].push({me:0,k:REPLY[k]});},1100);}
+function pick(l){S.lang=l;document.documentElement.lang=l;S.scr="hello";render();speak(T("hello"));}
+function open_(k){S.warn="";go("detail",k);speak(lv()[k].t);}
+function didFood(){const t=TG[S.stage];["N","P","K"].forEach(k=>{if(lvl(S[k],t[k])>0)S[k]=t[k];});addDiary("🌿 "+T("fApplied"));tick();toast(T("well")+" 👍");go("home");}
+for(let i=0;i<24;i++)tick();setInterval(()=>{tick();updateAI();},2500);
+render();
+</script>
+</body>
+</html>
